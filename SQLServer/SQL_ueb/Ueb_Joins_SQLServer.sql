@@ -1,4 +1,4 @@
--- Übung 5: Joins  -  Lösungen
+-- Übung: Joins  -  Lösungen
 
 -- 1. Schreiben Sie eine Abfrage, um den Nachnamen, die Abteilungsnummer und 
 -- den Abteilungsnamen aller Mitarbeiter anzuzeigen.
@@ -8,6 +8,7 @@
 		
 -- 2. Geben Sie die Adressen aller Abteilungen in der Form
 -- Lokationskennung, Abteilungsname, Stadt und Strasse aus.
+
 
 
 		
@@ -55,10 +56,10 @@
 			
 
  
--- 10. Schreiben Sie eine Abfrage, die für den Mitarbeiter Zlotkey den Nachnamen,
--- die Abteilungsnummer und die Nachnamen aller Kollegen ausgibt, die in der 
--- gleichen Abteilung arbeiten. Schliessen Sie bei den Kollegen Zlotkey aus.
+-- 10. Schreiben Sie eine Abfrage, die für den Mitarbeiter Zlotkey den Nachnamen, die Abteilungsnummer 
+-- und die Nachnamen aller Kollegen ausgibt, die in der gleichen Abteilung arbeiten. 
 -- Geben Sie den Spalten passende Überschriften.
+
 
 
 
@@ -71,6 +72,22 @@
 		    
 -- 12. Zeigen Sie die Namen und das Einstellungsdatum aller Mitarbeiter an, 
 -- die nach dem Mitarbeiter Davies eingestellt wurden.
+
+
+	    
+
+
+-- 13. Zeigen Sie die Jobkennungen, die in den Abteilungen "Administration" 
+-- und "Executive" vorkommen. 
+-- Zeigen Sie auch die Anzahl der Mitarbeiter für diese Jobs an, wobei die Ausgabe nach 
+-- der Anzahl sortiert erfolgen soll.
+
+
+
+
+
+-- 14. Zeigen Sie nur die Abteilungen an, die keine Mitarbeiter haben 
+-- und die Mitarbeiter, die keiner Abteilung zugeordnet sind. (Anti-Join)
 
 
 
