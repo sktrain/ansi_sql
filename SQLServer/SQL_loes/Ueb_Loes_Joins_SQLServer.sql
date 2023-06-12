@@ -1,7 +1,7 @@
--- Übung 4: Joins  -  Lösungen
+-- Übung: Joins  -  Lösungen
 
--- 1. Schreiben Sie eine Abfrage, um den Nachnamen, die Abteilungsnummer
--- und den Abteilungsnamen aller Mitarbeiter anzuzeigen.
+-- 1. Schreiben Sie eine Abfrage, um den Nachnamen, die Abteilungsnummer und 
+-- den Abteilungsnamen aller Mitarbeiter anzuzeigen.
 
 SELECT	e.last_name, e.department_id, d.department_name
 FROM 	employees e     JOIN 	departments d
@@ -17,9 +17,8 @@ FROM 	locations l     JOIN 	departments d
 
 		
 		
--- 3. Erstellen Sie eine eindeutige Auflistung aller Jobkennungen in 
--- der Abteilung 80. Die Lokationskennung ("Location_id") der Abteilung
--- soll ebenfalls angezeigt werden.
+-- 3. Erstellen Sie eine eindeutige Auflistung aller Jobkennungen in der Abteilung 80. 
+-- Die Lokationskennung ("Location_id") der Abteilung soll ebenfalls angezeigt werden.
 
 SELECT DISTINCT e.job_id,  d.location_id
 FROM 	employees  e  JOIN   departments d
@@ -27,8 +26,7 @@ FROM 	employees  e  JOIN   departments d
 WHERE	e.department_id = 80;
 
 
--- 4. Erweitern Sie die Aufgabe 3 so, dass zusätzlich der Name der Stadt
--- für die Lokation angezeigt wird.
+-- 4. Erweitern Sie die Aufgabe 3 so, dass zusätzlich der Name der Stadt für die Lokation angezeigt wird.
 
 SELECT DISTINCT e.job_id,  d.location_id, l.city
 FROM 	employees  e  JOIN   departments d
@@ -38,8 +36,8 @@ FROM 	employees  e  JOIN   departments d
 WHERE	e.department_id = 80;
 
 
--- 5. Zeigen Sie den Nachnamen, die Jobkennung, die Abteilungsnummer 
--- und den Abteilungsnamen für alle Mitarbeiter an, die in Toronto arbeiten.
+-- 5. Zeigen Sie den Nachnamen, die Jobkennung, die Abteilungsnummer und den Abteilungsnamen 
+-- für alle Mitarbeiter an, die in Toronto arbeiten.
 
 SELECT e.last_name, e.job_id, e.department_id, d.department_name
 FROM 	employees e   JOIN    departments d
@@ -49,8 +47,8 @@ FROM 	employees e   JOIN    departments d
 WHERE 	LOWER(l.city) = 'toronto';
 
 
--- 6. Zeigen Sie zu jeder Abteilung den Abteilungsnamen und den Namen
--- des Landes an, in dem die Abteilung liegt.
+-- 6. Zeigen Sie zu jeder Abteilung den Abteilungsnamen und den Namen des Landes an, 
+-- in dem die Abteilung liegt.
 
 SELECT	d.department_name, c.country_name
 FROM 	locations l     JOIN 	departments d
@@ -62,14 +60,13 @@ FROM 	locations l     JOIN 	departments d
 -- 7. Zeigen Sie zu jeder Abteilung die Abteilungsnummer, 
 -- den Namen der Abteilung und den Namen des Abteilungsleiters an.
 
-SELECT	d.department_id, d.department_name
-        , e.last_name "Abteilungsleiter"
+SELECT	d.department_id, d.department_name, e.last_name "Abteilungsleiter"
 FROM 	employees e     JOIN 	departments d
 		ON   d.manager_id = e.employee_id ;
 
 
--- 8. Zeigen sie den Nachnamen und die Mitarbeiternummer sowie den
--- zugehörigen Manager mit seiner Mitarbeiternummer und seinem Nachnamen an. 
+-- 8. Zeigen sie den Nachnamen und die Mitarbeiternummer sowie den zugehörigen Manager 
+-- mit seiner Mitarbeiternummer und seinem Nachnamen an. 
 -- Nennen Sie die Spalten "Employee", "EMP#", "Manager Name"“ und "MGR#".
 
 SELECT 	w.last_name "Employee", w.employee_id   "EMP#", 
@@ -78,8 +75,8 @@ SELECT 	w.last_name "Employee", w.employee_id   "EMP#",
 			ON (w.manager_id = m.employee_id);
 			
 			
--- 9. Modifizieren Sie die vorherige Abfrage, so dass auch der Mitarbeiter
--- King angezeigt wird, der keinen Manager hat.
+-- 9. Modifizieren Sie die vorherige Abfrage, so dass auch der Mitarbeiter King angezeigt wird, 
+-- der keinen Manager hat.
 
 SELECT 	w.last_name "Employee", w.employee_id   "EMP#", 
 			m.last_name "Manager Name",  m.employee_id  "MGR#"
@@ -88,23 +85,21 @@ SELECT 	w.last_name "Employee", w.employee_id   "EMP#",
 			
 
  
--- 10. Schreiben Sie eine Abfrage, die für den Mitarbeiter Zlotkey den Nachnamen,
--- die Abteilungsnummer und die Nachnamen aller Kollegen ausgibt, die in der 
--- gleichen Abteilung arbeiten. Schliessen Sie bei den Kollegen Zlotkey aus.
+-- 10. Schreiben Sie eine Abfrage, die für den Mitarbeiter Zlotkey den Nachnamen, die Abteilungsnummer 
+-- und die Nachnamen aller Kollegen ausgibt, die in der gleichen Abteilung arbeiten. 
 -- Geben Sie den Spalten passende Überschriften.
 
 SELECT 	e.department_id  "department", e.last_name   "employee", 
 			c.last_name  "colleague"
 FROM	employees e   JOIN   employees c
 			ON	(e.department_id = c.department_id)
-			    AND UPPER(e.last_name) = 'ZLOTKEY'
 WHERE	e.employee_id <> c.employee_id
 ORDER BY	e.department_id, e.last_name, c.last_name;
 
 
--- 11. Schreiben Sie eine Abfrage, die den Namen, die Jobkennung, 
--- den Abteilungsnamen, das Gehalt und das minimale Gehalt(aus der Tabelle Jobs)
--- ausgibt, sofern der Mitarbeiter in der Gehaltseinstufung liegt.
+-- 11. Schreiben Sie eine Abfrage, die den Namen, die Jobkennung, den Abteilungsnamen, das Gehalt 
+-- und das minimale Gehalt(aus der Tabelle Jobs) ausgibt, sofern der Mitarbeiter in der 
+-- Gehaltseinstufung liegt.
 
 SELECT 	e.last_name  "Employee", e.job_id "Job", 
         d.department_name "Department", e.salary "Gehalt",
@@ -123,4 +118,26 @@ FROM	employees l JOIN employees r
 		ON (l.hire_date < r.hire_date) AND (UPPER(l.last_name) = 'DAVIES')
 ORDER BY r.hire_date;
 	    
+
+
+-- 13. Zeigen Sie die Jobkennungen, die in den Abteilungen "Administration" 
+-- und "Executive" vorkommen. 
+
+SELECT	e.job_id
+FROM	employees e JOIN departments d
+		ON e.department_id = d.department_id
+WHERE	d.department_name in ('Administration', 'Executive');
+
+
+
+-- 14. Zeigen Sie nur die Abteilungen an, die keine Mitarbeiter haben 
+-- und die Mitarbeiter, die keiner Abteilung zugeordnet sind. (Anti-Join)
+
+SELECT	* 
+FROM	employees e FULL OUTER JOIN departments d
+		ON e.department_id = d.department_id
+		WHERE e.department_id is null
+;
+
+
 
