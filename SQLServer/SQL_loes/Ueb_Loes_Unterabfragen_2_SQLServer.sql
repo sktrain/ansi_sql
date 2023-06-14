@@ -116,12 +116,28 @@ Verwenden Sie die WITH-Klausel */
 
 WITH max_sal_calc AS
     ( SELECT job_title, MAX(salary) AS job_max
-        FROM employees 
-        JOIN jobs ON employees.job_id = jobs.job_id
-        GROUP BY job_title)
+			FROM employees 
+				JOIN jobs ON employees.job_id = jobs.job_id
+	  GROUP BY job_title)
 SELECT job_title, job_max FROM max_sal_calc
   WHERE job_max > ( SELECT MAX(job_max) / 2
                       FROM max_sal_calc)
+  ORDER BY job_max DESC; 
+
+
+-- Variante ohne WITH-Klausel
+SELECT job_title, job_max FROM 
+       ( SELECT job_title, MAX(salary) AS job_max
+			FROM employees 
+				JOIN jobs ON employees.job_id = jobs.job_id
+			GROUP BY job_title) max_sal_calc 
+     WHERE job_max > ( SELECT MAX(max_sal_calc.job_max) / 2
+                      FROM 
+					  ( SELECT job_title, MAX(salary) AS job_max
+							FROM employees 
+								JOIN jobs ON employees.job_id = jobs.job_id
+							GROUP BY job_title) max_sal_calc 
+					  ) 
   ORDER BY job_max DESC; 
   
 
