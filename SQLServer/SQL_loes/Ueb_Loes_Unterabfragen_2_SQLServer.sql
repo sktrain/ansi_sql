@@ -2,8 +2,8 @@
 
 /* Aufgabe 1 - Listen Sie Nachname, Abteilungsnummer und Gehalt eines jeden 
 Mitarbeiter auf, dessen Abteilung und Gehaltswert mit dem Gehalt und zugleich 
-der Abteilungsnummer eines Mitarbeiters übereinstimmt, der eine Provision 
-(commission_pct) erhält */
+der Abteilungsnummer eines Mitarbeiters Ã¼bereinstimmt, der eine Provision 
+(commission_pct) erhÃ¤lt */
 
 -- leider kennt SQLServer keine Tupelvergleiche (ANSI schon):
 /* 
@@ -21,7 +21,7 @@ SELECT DISTINCT e.last_name, e.department_id, e.salary
 		WHERE commission_pct IS NOT NULL) s
    ON e.department_id = s.department_id AND e.salary = s.salary;
 
--- oder
+-- das ist leider nicht korrekt!!
 SELECT last_name, department_id, salary
   FROM employees
   WHERE salary IN (SELECT salary FROM employees
@@ -33,7 +33,7 @@ SELECT last_name, department_id, salary
            
 /* Aufgabe 2 - Listen Sie Nachname, Einstellungsdatum und Gehalt eines jeden 
 Mitarbeiter an, der das  gleiche Gehalt und die gleiche Provision wie der 
-Mitarbeiter 'Kochhar' erhält. Kochhar soll nicht im Ergebnis enthalten sein */
+Mitarbeiter 'Kochhar' erhÃ¤lt. Kochhar soll nicht im Ergebnis enthalten sein */
 
 SELECT last_name, hire_date, salary
   FROM employees
@@ -46,9 +46,9 @@ SELECT last_name, hire_date, salary
                  
 -- Was ist, wenn es mehrere Kochhars gibt?     
         
-/* Aufgabe 3 - Zeigen Sie die Mitarbeiter an, deren Gehalt höher als das Gehalt 
+/* Aufgabe 3 - Zeigen Sie die Mitarbeiter an, deren Gehalt hÃ¶her als das Gehalt 
 aller Sales Manager ist (job_id = 'SA_MAN'). Sortieren Sie die Ergebnisse
-vom höchsten zum niedrigsten Gehalt. */
+vom hÃ¶chsten zum niedrigsten Gehalt. */
 
 SELECT last_name, job_id, salary FROM employees
   WHERE salary > ALL (SELECT salary FROM employees
@@ -64,8 +64,8 @@ SELECT last_name, job_id, salary FROM employees
 
 
 /* Aufgabe 4 - Suchen Sie alle Angestellten und zeigen deren Namen an, die keine Vorgesetzten sind. 
-Verwenden Sie dabei möglichst den EXISTS-Operator. 
-Können Sie die Aufgabe auch mit dem IN-Operator lösen? */
+Verwenden Sie dabei mÃ¶glichst den EXISTS-Operator. 
+KÃ¶nnen Sie die Aufgabe auch mit dem IN-Operator lÃ¶sen? */
 
 SELECT o.first_name, o.last_name FROM employees o
   WHERE NOT EXISTS ( SELECT 'EgalWas' FROM employees
@@ -76,7 +76,7 @@ SELECT o.first_name, o.last_name FROM employees o
 SELECT first_name, last_name FROM employees
    WHERE employee_id NOT IN ( SELECT DISTINCT manager_id FROM employees 
                                 WHERE manager_id IS NOT NULL
-                                -- nicht vergessen, auf NOT NULL zu prüfen!
+                                -- nicht vergessen, auf NOT NULL zu prÃ¼fen!
                                 );
                           
 
@@ -100,7 +100,7 @@ SELECT employee_id, last_name FROM employees e
                   WHERE state_province = 'California'))
   ORDER BY last_name;
                   
--- alternativ wäre die Aufgabe prinzipiell auch via JOIN lösbar:
+-- alternativ wÃ¤re die Aufgabe prinzipiell auch via JOIN lÃ¶sbar:
 SELECT e.employee_id, e.last_name 
     FROM employees e JOIN departments d
                      ON e.department_id = d.department_id
@@ -111,7 +111,7 @@ SELECT e.employee_id, e.last_name
                   
                   
 /* Aufgabe 7 Erstellen Sie eine Abfrage, um die Jobkennungen der Jobs anzuzeigen,
-deren Maximalgehalt 50% des Maximalgehalts des gesamten Unternehmens übersteigt.
+deren Maximalgehalt 50% des Maximalgehalts des gesamten Unternehmens Ã¼bersteigt.
 Verwenden Sie die WITH-Klausel */
 
 WITH max_sal_calc AS
@@ -143,7 +143,7 @@ SELECT job_title, job_max FROM
 
 /* Aufgabe 8 Erstellen Sie eine Abfrage, um die Namen der Abteilungen anzuzeigen,
 deren Gesamtlohnkosten ein Achtel (1/8) der Gesamtlohnkosten des Unternehmens 
-übersteigen. Verwenden Sie die WITH-Klausel. */
+Ã¼bersteigen. Verwenden Sie die WITH-Klausel. */
 
 WITH SUMMARY AS
   ( SELECT d.department_name, sum(e.salary) AS dept_total
