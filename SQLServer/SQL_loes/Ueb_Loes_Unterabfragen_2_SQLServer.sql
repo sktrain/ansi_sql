@@ -14,6 +14,7 @@ der Abteilungsnummer eines Mitarbeiters übereinstimmt, der eine Provision
            WHERE commission_pct IS NOT NULL) ;
 */
 
+-- auch diese Lösung ist nicht korrekt!!
 -- durch den JOIN entstehen Duplikate
 SELECT DISTINCT e.last_name, e.department_id, e.salary
   FROM employees e JOIN  
