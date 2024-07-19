@@ -1,0 +1,46 @@
+-- Übungen zu regulären Ausdrücken
+
+/* ------------ Vorab -------------------------
+Snowflake-Besonderheit bei REGEXP_LIKE: 
+Die Funktion verankert implizit ein Muster an beiden Enden 
+(d. h. '' wird automatisch zu '^$' und 'ABC' automatisch zu '^ABC$'). 
+Um beispielsweise eine beliebige Zeichenfolge, die mit ABC beginnt, 
+abzugleichen, wäre das Muster 'ABC.*' erforderlich.
+*/
+
+/* Aufgabe 1  Erstellen Sie eine Abfrage, um alle Mitarbeiter zu suchen, 
+deren Vorname mit "Ne" oder "Na" beginnt. Zeigen Sie die Namen an.*/
+ 
+  
+
+  
+/* Aufgabe 2 Zeigen Sie alle Mitarbeiter an, bei denen die Telefonnummer 
+genau 3 Punkte (.) enthält. */
+  
+
+  
+  
+/* Aufgabe 3 Zeigen Sie alle Mitarbeiter an, bei denen die Telefonnummer 
+eine 2-stellige Ziffernfolge enthält, die von Nichtziffern umrahmt wird. */
+
+
+
+
+
+/* Aufgabe 4 Erstellen Sie eine Abfrage, die bei der Anzeige der Strassen 
+(Spalte STREET_ADDRESS) aus der Tabelle LOCATIONS das Kürzel 'St' durch 
+'Street' ersetzt. Achten Sie darauf, dass keine Zeilen betroffen sind, die 
+'Street' bereits enthalten, wobei Sie sich darauf stützen können, dass das 
+Kürzel 'St' stets am Ende steht. */
+
+
+
+
+
+-- wird bei Snowflake nicht unterstützt, 
+-- da Rückverweise nur bei der REGEXP_REPLACE unterstützt werden!!
+
+/* Aufgabe 5  Suchen Sie bei den Vornamen der Mitarbeiter nach Palindromen der 
+Länge 4 (Palindrome sind Zeichenketten, die vorwärts und rückwärts gelesen 
+gleich sind, z.B. 'otto'. (sportliche Aufgabe)  */
+
