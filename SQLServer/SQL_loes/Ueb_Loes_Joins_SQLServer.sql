@@ -89,13 +89,14 @@ SELECT 	w.last_name "Employee", w.employee_id   "EMP#",
 -- und die Nachnamen aller Kollegen ausgibt, die in der gleichen Abteilung arbeiten. 
 -- Geben Sie den Spalten passende Überschriften.
 
-SELECT 	e.department_id  "department", e.last_name   "employee", 
+SELECT 	e.department_id  "department", e.last_name  "employee", 
 			c.last_name  "colleague"
 FROM	employees e   JOIN   employees c
 			ON	(e.department_id = c.department_id)
-WHERE	e.employee_id <> c.employee_id
+WHERE	
+   e.employee_id <> c.employee_id AND 
+   e.last_name = 'Zlotkey'
 ORDER BY	e.department_id, e.last_name, c.last_name;
-
 
 -- 11. Schreiben Sie eine Abfrage, die den Namen, die Jobkennung, den Abteilungsnamen, das Gehalt 
 -- und das minimale Gehalt(aus der Tabelle Jobs) ausgibt, sofern der Mitarbeiter in der 
@@ -104,10 +105,12 @@ ORDER BY	e.department_id, e.last_name, c.last_name;
 SELECT 	e.last_name  "Employee", e.job_id "Job", 
         d.department_name "Department", e.salary "Gehalt",
         j.min_salary "Mindestlohn"
-FROM	employees e   JOIN   departments d
-			ON	(e.department_id = d.department_id)
-		JOIN jobs j
-		    ON  (e.salary BETWEEN j.min_salary AND j.max_salary);
+FROM	employees e   
+      JOIN   departments d
+          ON	e.department_id = d.department_id
+      JOIN jobs j
+          ON  e.job_id = j.job_id 
+        WHERE e.salary BETWEEN j.min_salary AND j.max_salary;
 		    
 		    
 -- 12. Zeigen Sie die Namen und das Einstellungsdatum aller Mitarbeiter an, 
@@ -120,17 +123,8 @@ ORDER BY r.hire_date;
 	    
 
 
--- 13. Zeigen Sie die Jobkennungen, die in den Abteilungen "Administration" 
--- und "Executive" vorkommen. 
 
-SELECT	e.job_id
-FROM	employees e JOIN departments d
-		ON e.department_id = d.department_id
-WHERE	d.department_name in ('Administration', 'Executive');
-
-
-
--- 14. Zeigen Sie nur die Abteilungen an, die keine Mitarbeiter haben 
+-- 13. Zeigen Sie nur die Abteilungen an, die keine Mitarbeiter haben 
 -- und die Mitarbeiter, die keiner Abteilung zugeordnet sind. (Anti-Join)
 
 SELECT	* 
