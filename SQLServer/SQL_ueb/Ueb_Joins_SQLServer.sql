@@ -77,16 +77,7 @@
 	    
 
 
--- 13. Zeigen Sie die Jobkennungen, die in den Abteilungen "Administration" 
--- und "Executive" vorkommen. 
--- Zeigen Sie auch die Anzahl der Mitarbeiter für diese Jobs an, wobei die Ausgabe nach 
--- der Anzahl sortiert erfolgen soll.
-
-
-
-
-
--- 14. Zeigen Sie nur die Abteilungen an, die keine Mitarbeiter haben 
+-- 13. Zeigen Sie nur die Abteilungen an, die keine Mitarbeiter haben 
 -- und die Mitarbeiter, die keiner Abteilung zugeordnet sind. (Anti-Join)
 
 
