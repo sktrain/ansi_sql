@@ -13,14 +13,22 @@ der Abteilungsnummer eines Mitarbeiters übereinstimmt, der eine Provision
       (SELECT salary, department_id FROM employees
            WHERE commission_pct IS NOT NULL) ;
 */
+-- Um die Logik zu testen, kommt hier eine Ergänzung der Datensätze ins Spiel
+BEGIN TRANSACTION;
 
--- auch diese Lösung ist nicht korrekt!!
+INSERT INTO employees (employee_id, last_name, email, hire_date, job_id, salary, department_id, commission_pct)
+     VALUES (1, 'mustermann1', 'musteremail1', getDate(), 'IT_PROG', 11000, 50, 0.1),
+	        (2, 'mustermann2', 'musteremail2', getDate(), 'IT_PROG', 500, 80, 0.1);
+
+-- das sollte korrekt sein!!
 -- durch den JOIN entstehen Duplikate
-SELECT DISTINCT e.last_name, e.department_id, e.salary
+SELECT DISTINCT e.employee_id, e.last_name, e.department_id, e.salary
   FROM employees e JOIN  
-      (SELECT salary, department_id FROM employees
+      (SELECT employee_id, last_name , salary, department_id FROM employees
 		WHERE commission_pct IS NOT NULL) s
-   ON e.department_id = s.department_id AND e.salary = s.salary;
+   ON e.department_id = s.department_id AND e.salary = s.salary
+   WHERE e.employee_id != s.employee_id
+   ORDER BY e.last_name;
 
 -- das ist leider nicht korrekt!!
 SELECT last_name, department_id, salary
@@ -29,7 +37,22 @@ SELECT last_name, department_id, salary
 						WHERE commission_pct IS NOT NULL)
 		AND
 		department_id IN (SELECT department_id FROM employees
-						WHERE commission_pct IS NOT NULL);
+						WHERE commission_pct IS NOT NULL)
+	order by last_name;
+
+
+-- das dürfte auch korrekt sein
+SELECT Distinct e1.last_name, e1.department_id, e1.salary
+FROM employees e1
+Where department_id In (SELECT department_id
+        From employees e2
+        where e1.department_id = e2.department_id and
+        e1.salary = e2.salary and
+        e2.commission_pct > 0 and 
+		e1.employee_id != e2.employee_id)
+Order by last_name;
+
+ROLLBACK; 
 
            
 /* Aufgabe 2 - Listen Sie Nachname, Einstellungsdatum und Gehalt eines jeden 
@@ -88,6 +111,35 @@ SELECT last_name, salary, (SELECT count(*) FROM employees
                     WHERE e.salary < salary) as higher
   FROM employees e
   ORDER BY higher; 
+
+-- oder mit Cross Apply
+SELECT e.last_name, e.salary, others.c as higher
+  FROM employees e
+    CROSS APPLY  
+	  (SELECT count(*) c FROM employees
+                    WHERE e.salary < salary) others
+  ORDER BY higher; 
+
+ -- oder
+SELECT last_name, salary, count(oid) as higher FROM 
+    (SELECT e.employee_id, e.last_name , e.salary, others.employee_id oid
+	  FROM employees e
+			LEFT OUTER JOIN 
+		   employees others
+			ON e.salary < others.salary ) base
+  GROUP BY employee_id, last_name, salary
+  ORDER BY higher;
+
+  -- oder mit OVER-Klausel
+SELECT DISTINCT e.last_name , e.salary, count(others.employee_id) over (Partition By e.employee_id) higher
+	  FROM employees e
+			LEFT OUTER JOIN 
+		   employees others
+			ON e.salary < others.salary 
+  ORDER BY higher; 
+
+-
+	     
 
 
 /* Aufgabe 6  Erstellen Sie eine Abfrage, um die Angestelltennummer und den Nachnamen 
