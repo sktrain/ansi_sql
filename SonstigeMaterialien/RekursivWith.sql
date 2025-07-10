@@ -30,7 +30,7 @@ FROM rek_topdown;
 
 
 
--- top-down with level and parentname
+-- top-down with level and parentname, SQL Server needs CAST (see below)
 WITH rek_topdown( eid, lname, mgrid, mgrname, step ) AS
     (   SELECT employee_id, last_name, manager_id, '', 1
         FROM employees WHERE manager_id is null
@@ -41,10 +41,22 @@ WITH rek_topdown( eid, lname, mgrid, mgrname, step ) AS
 SELECT eid, lname, mgrid, mgrname, step
 FROM rek_topdown;
 
+-- SQL Server with CAST
+WITH rek_topdown( eid, lname, mgrid, mgrname, step ) AS
+    (   SELECT employee_id, last_name, manager_id, CAST('' AS VARCHAR(max)), 1
+        FROM employees WHERE manager_id is null
+      UNION ALL
+        SELECT e.employee_id, e.last_name, e.manager_id, CAST(r.lname AS VARCHAR(max)), r.step+1
+        FROM employees e JOIN rek_topdown r ON e.manager_id = r.eid
+    )
+SELECT eid, lname, mgrid, mgrname, step
+FROM rek_topdown;
 
 
 
--- top-down aufgeruescht
+
+
+-- top-down aufgeruescht, SQL Server use special Syntax "+" and CAST (see below)
 WITH rek_topdown( eid, lname, mgrid, path, step ) AS
     (   SELECT employee_id, last_name, manager_id, last_name as path, 1
         FROM employees WHERE manager_id is null
@@ -55,6 +67,20 @@ WITH rek_topdown( eid, lname, mgrid, path, step ) AS
     )
 SELECT eid, lname, mgrid, path, step
 FROM rek_topdown;
+
+-- SQL Server
+WITH rek_topdown( eid, lname, mgrid, path, step ) AS
+    (   SELECT employee_id, last_name, manager_id, CAST(last_name AS VARCHAR(max)) as path, 1
+        FROM employees WHERE manager_id is null
+      UNION ALL
+        SELECT e.employee_id, e.last_name, e.manager_id
+              , r.path + '/' + e.last_name, r.step+1       
+        FROM employees e JOIN rek_topdown r ON e.manager_id = r.eid
+    )
+SELECT eid, lname, mgrid, path, step
+FROM rek_topdown;
+
+
 
 
 
