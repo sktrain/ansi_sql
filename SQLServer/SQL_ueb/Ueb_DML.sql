@@ -1,4 +1,4 @@
--- Übungen/Lösungen zu DML
+-- Ãœbungen/LÃ¶sungen zu DML
 
 -- 1. Erzeugen Sie mit Hilfe der folgenden Anweisungen die Tabelle "MY EMPLOYEE", die im Folgenden verwendet wird:
 
@@ -18,7 +18,7 @@ CREATE TABLE MY_EMPLOYEE
 -- 3. Starten Sie eine explizite Transaktion
 
 
--- 4. Fügen sie die erste Zeile in die Tabelle MY_EMPLOYEE von den folgenden Beispielsdaten ein, 
+-- 4. FÃ¼gen sie die erste Zeile in die Tabelle MY_EMPLOYEE von den folgenden Beispielsdaten ein, 
 -- ohne die Spalten  beim INSERT aufzulisten.
 -- ID   LAST_NAME   FIRST NAME    USERID    SALARY
 -- 1    Patel       Ralph         rpatel      895
@@ -30,12 +30,12 @@ CREATE TABLE MY_EMPLOYEE
 
 
 
--- 5. Füllen Sie die MY EMPLOYEE Tabelle mit der 2. und 3. Zeile der Beispielsdaten,
+-- 5. FÃ¼llen Sie die MY EMPLOYEE Tabelle mit der 2. und 3. Zeile der Beispielsdaten,
 -- diemal mit expliziter Nennung der Spalten in der INSERT-Klausel.
 
 
 
--- 6. Schreiben Sie die Änderungen fest.
+-- 6. Schreiben Sie die Ã„nderungen fest.
 
 
 
@@ -44,31 +44,31 @@ CREATE TABLE MY_EMPLOYEE
 
 
 
--- 8. Ändern Sie den Namen des Angestellten 3 zu Drexler.
+-- 8. Ã„ndern Sie den Namen des Angestellten 3 zu Drexler.
 
 
 
 
--- 9. Ändern Sie das Gehalt für alle Angestellten, die weniger als 900 verdienen, auf 1000.
+-- 9. Ã„ndern Sie das Gehalt fÃ¼r alle Angestellten, die weniger als 900 verdienen, auf 1000.
 
 
 
 
--- 10. Löschen Sie Betty Dancs aus der Tabelle MY_EMPLOYEE.
+-- 10. LÃ¶schen Sie Betty Dancs aus der Tabelle MY_EMPLOYEE.
 
 
 
--- 11. Schreiben Sie alle anstehenden Änderungen fest.
+-- 11. Schreiben Sie alle anstehenden Ã„nderungen fest.
 
 
 
 
 -- 12. Wechseln Sie zu impliziter Transaktionssteuerung
+SET IMPLICIT_TRANSACTIONS ON
 
 
 
-
--- 13. Füllen Sie die MY_EMPLOYEE Tabelle mit der 4. Zeile der Beispielsdaten.
+-- 13. FÃ¼llen Sie die MY_EMPLOYEE Tabelle mit der 4. Zeile der Beispielsdaten.
 
 
 
@@ -82,12 +82,12 @@ CREATE TABLE MY_EMPLOYEE
 
 
 
--- 16. Machen Sie das Löschen rückgängig ohne die vorherige INSERT-Anweisung rückgängig zu machen. 
+-- 16. Machen Sie das LÃ¶schen rÃ¼ckgÃ¤ngig ohne die vorherige INSERT-Anweisung rÃ¼ckgÃ¤ngig zu machen. 
 
 
 
 
--- 17. Schreiben Sie die Daten endgültig fest.
+-- 17. Schreiben Sie die Daten endgÃ¼ltig fest.
 
 
 
