@@ -1,11 +1,11 @@
--- Übungen: Hierarchische Queries
+-- Ãœbungen: Hierarchische Queries
 
--- 1a. Schreiben Sie eine hierarchische Abfrage für die Mitarbeiter des 
--- Managers Mourgos, beginnend mit diesem. Es sollen die Nachnamen, Gehälter
+-- 1a. Schreiben Sie eine hierarchische Abfrage fÃ¼r die Mitarbeiter des 
+-- Managers Mourgos, beginnend mit diesem. Es sollen die Nachnamen, GehÃ¤lter
 -- und Abteilungsnummern der Mitarbeiter, sowie die Hierarchie-Ebene 
 -- angezeigt werden.
 
--- eid wird für Join benötigt
+-- eid wird fÃ¼r Join benÃ¶tigt
 WITH rek_topdown( lname, sal, depid, level1, eid  ) AS 
     (   SELECT last_name, salary, department_id, 1, employee_id
         FROM employees WHERE last_name = 'Mourgos'
@@ -38,7 +38,7 @@ FROM rek_topdown;
 
 
 
--- 2 Zeigen Sie die Managerhierarchie BottomUp für den Mitarbeiter Lorentz an, 
+-- 2 Zeigen Sie die Managerhierarchie BottomUp fÃ¼r den Mitarbeiter Lorentz an, 
 -- beginnend mit dem direkten Vorgesetzten.
 WITH rek_bottomup( eid, lname, mgrid, path ) AS
   ( SELECT employee_id, last_name, manager_id, CAST(last_name AS VARCHAR(max))
@@ -57,7 +57,7 @@ FROM rek_bottomup;
 
 -- 3. Erzeugen Sie eine fortlaufende tagesweise Liste von Datumswerten,
 -- beginnend mit dem Datum '2021-01-01' bis zum '2021-12-31'.
--- Leider ist bei SQL Server die Rekursionstiefe standardmäßig drastisch 
+-- Leider ist bei SQL Server die Rekursionstiefe standardmÃ¤ÃŸig drastisch 
 -- begrenzt!
 
 WITH  my_dates(dt) AS 
@@ -67,7 +67,7 @@ WITH  my_dates(dt) AS
         SELECT DATEADD(day, 1, dt)   FROM my_dates   
             WHERE dt < '2021-12-31')
 SELECT * FROM my_dates
-OPTION (MAXRECURSION 500); -- damit klappt es zumindest für max. 500 Werte
+OPTION (MAXRECURSION 500); -- damit klappt es zumindest fÃ¼r max. 500 Werte
 
 /*
 DT      
@@ -104,7 +104,7 @@ WHERE level1 = 3;
 -- 5. Zeigen Sie die Managementhierarchie beginnend mit dem Mitarbeiter Kochhar
 -- an (top-down). Geben Sie jeweils Nachname, Managerkennung und Abteilungs_
 -- nummer der Mitarbeiter aus. Dabei sollen die Zeilen je Hierarchiestufe um 5
--- Positionen eingerückt werden und die Einrückung mit "_"-Zeichen verdeutlicht
+-- Positionen eingerÃ¼ckt werden und die EinrÃ¼ckung mit "_"-Zeichen verdeutlicht
 -- werden (Hinweis: Verwenden Sie die REPLICATE-Funktion)
 
 
@@ -127,7 +127,12 @@ FROM rek_topdown;
 -- 6.Sportliche Aufgabe!!
 -- Zeigen Sie die gesamte Managementhierarchie ohne Indianer topdown mit 
 -- Mitarbeiterkennung, Managerkennung, Nachnamen, Ebene an 
--- und zusätzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
+-- und zusÃ¤tzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
+-- (d.h. akkumuliert: Steven King hat bei 107 Mitarbeitern 106 unter sich)
+-- 6.Sportliche Aufgabe!!
+-- Zeigen Sie die gesamte Managementhierarchie ohne Indianer topdown mit 
+-- Mitarbeiterkennung, Managerkennung, Nachnamen, Ebene an 
+-- und zusÃ¤tzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
 -- (d.h. akkumuliert: Steven King hat bei 107 Mitarbeitern 106 unter sich)
 WITH
   emp_count (eid, emp_last, mgr_id, mgrLevel, salary, cnt_employees) AS
@@ -141,12 +146,14 @@ WITH
     FROM emp_count r, employees e
     WHERE e.employee_id = r.mgr_id
   )
-SELECT emp_last, eid, mgr_id, salary, sum(cnt_employees)
-       , max(mgrLevel) mgrLevel
+SELECT emp_last, eid, mgr_id, salary
+       , sum(cnt_employees)
+      , max(mgrLevel) mgrLevel
 FROM emp_count
 GROUP BY emp_last, eid, mgr_id, salary
 HAVING max(mgrLevel) > 0
 ORDER BY mgr_id , emp_last;
+
 
 /*
 EMP_LAST        EID    MGR_ID     SALARY   SUM(CNT_EMPLOYEES)  MGRLEVEL
