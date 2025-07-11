@@ -129,11 +129,11 @@ FROM rek_topdown;
 -- Mitarbeiterkennung, Managerkennung, Nachnamen, Ebene an 
 -- und zusätzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
 -- (d.h. akkumuliert: Steven King hat bei 107 Mitarbeitern 106 unter sich)
--- 6.Sportliche Aufgabe!!
--- Zeigen Sie die gesamte Managementhierarchie ohne Indianer topdown mit 
--- Mitarbeiterkennung, Managerkennung, Nachnamen, Ebene an 
--- und zusätzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
--- (d.h. akkumuliert: Steven King hat bei 107 Mitarbeitern 106 unter sich)
+
+-- Tip: Berechne je Mitarbeiter die Hierarchie mit Ermittlung, 
+-- wer auf jeder Ebene tiefer unterstellt ist.
+-- Anschließend wird gezählt, wieviele dies für jeden Mitarbeiter sind
+
 WITH
   emp_count (eid, emp_last, mgr_id, mgrLevel, salary, cnt_employees) AS
   (
