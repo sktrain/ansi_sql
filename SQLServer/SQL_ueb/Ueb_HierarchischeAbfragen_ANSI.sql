@@ -1,7 +1,7 @@
--- Übungen: Hierarchische Queries
+-- Ãœbungen: Hierarchische Queries
 
--- 1a. Schreiben Sie eine hierarchische Abfrage für die Mitarbeiter des 
--- Managers Mourgos, beginnend mit diesem. Es sollen die Nachnamen, Gehälter
+-- 1a. Schreiben Sie eine hierarchische Abfrage fÃ¼r die Mitarbeiter des 
+-- Managers Mourgos, beginnend mit diesem. Es sollen die Nachnamen, GehÃ¤lter
 -- und Abteilungsnummern der Mitarbeiter, sowie die Hierarchie-Ebene 
 -- angezeigt werden.
 
@@ -16,7 +16,7 @@
 
 
 
--- 2 Zeigen Sie die Managerhierarchie BottomUp für den Mitarbeiter Lorentz an, 
+-- 2 Zeigen Sie die Managerhierarchie BottomUp fÃ¼r den Mitarbeiter Lorentz an, 
 -- beginnend mit dem direkten Vorgesetzten.
 
 
@@ -25,7 +25,7 @@
 
 -- 3. Erzeugen Sie eine fortlaufende tagesweise Liste von Datumswerten,
 -- beginnend mit dem Datum '2021-01-01' bis zum '2021-12-31'.
--- Leider ist bei SQL Server die Rekursionstiefe standardmäßig drastisch 
+-- Leider ist bei SQL Server die Rekursionstiefe standardmÃ¤ÃŸig drastisch 
 -- begrenzt!
 
 
@@ -55,7 +55,7 @@ DT
 -- 5. Zeigen Sie die Managementhierarchie beginnend mit dem Mitarbeiter Kochhar
 -- an (top-down). Geben Sie jeweils Nachname, Managerkennung und Abteilungs_
 -- nummer der Mitarbeiter aus. Dabei sollen die Zeilen je Hierarchiestufe um 5
--- Positionen eingerückt werden und die Einrückung mit "_"-Zeichen verdeutlicht
+-- Positionen eingerÃ¼ckt werden und die EinrÃ¼ckung mit "_"-Zeichen verdeutlicht
 -- werden (Hinweis: Verwenden Sie die REPLICATE-Funktion)
 
 
@@ -67,8 +67,12 @@ DT
 -- 6.Sportliche Aufgabe!!
 -- Zeigen Sie die gesamte Managementhierarchie ohne Indianer topdown mit 
 -- Mitarbeiterkennung, Managerkennung, Nachnamen, Ebene an 
--- und zusätzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
+-- und zusÃ¤tzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
 -- (d.h. akkumuliert: Steven King hat bei 107 Mitarbeitern 106 unter sich)
+
+-- Tip: Berechne je Mitarbeiter die Hierarchie mit Ermittlung, 
+-- wer auf jeder Ebene tiefer unterstellt ist.
+-- AnschlieÃŸend werden die Unterstellten je Mitarbeiter gezÃ¤hlt.
 
 /*
 EMP_LAST        EID    MGR_ID     SALARY   SUM(CNT_EMPLOYEES)  MGRLEVEL
