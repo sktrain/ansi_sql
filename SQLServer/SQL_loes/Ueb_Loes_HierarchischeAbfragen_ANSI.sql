@@ -130,9 +130,9 @@ FROM rek_topdown;
 -- und zusätzlich je Manager die Gesamtanzahl ihm unterstellter Mitarbeiter
 -- (d.h. akkumuliert: Steven King hat bei 107 Mitarbeitern 106 unter sich)
 
--- Tip: Berechne je Mitarbeiter die Hierarchie mit Ermittlung, 
--- wer auf jeder Ebene tiefer unterstellt ist.
--- Anschließend wird gezählt, wieviele dies für jeden Mitarbeiter sind
+-- Idee: Berechne je Mitarbeiter die Hierarchie mit Ermittlung, 
+-- wer auf jeder Ebene tiefer unterstellt ist (cnt_employees = 1).
+-- Anschließend wird aggregiert.
 
 WITH
   emp_count (eid, emp_last, mgr_id, mgrLevel, salary, cnt_employees) AS
