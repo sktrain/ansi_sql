@@ -3,6 +3,7 @@ Hallo Herr Karrer,
 am 27.01.2026 findet Ihr Seminar SQL ANSIISO Aufbau für Fortgeschrittene statt.
 
 Das Seminar kann über folgenden Link bewertet werden
-httpsratings.gfu.cloudform.htmlh=cf2dfa5c1ae7394621014cfdbb3097adbfa235828d5a9ad2988672f7edd4a7af&type=trainer
+https://ratings.gfu.cloudform.htmlh=cf2dfa5c1ae7394621014cfdbb3097adbfa235828d5a9ad2988672f7edd4a7af&type=trainer
 
 QR-Code mit dem Link für Ihre Teilnehmer
+
