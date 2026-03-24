@@ -12,10 +12,10 @@
 -- Create Database
 -- ****************************************
 
---CREATE DATABASE HR;
+CREATE DATABASE HR;
 
 
---USE HR;
+USE HR;
 
 
 
