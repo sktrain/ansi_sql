@@ -2,29 +2,29 @@
 
 /* Aufgabe 1 - Listen Sie Nachname, Abteilungsnummer und Gehalt eines jeden 
 Mitarbeiter auf, dessen Abteilung und Gehaltswert mit dem Gehalt und zugleich 
-der Abteilungsnummer eines Mitarbeiters übereinstimmt, der eine Provision 
-(commission_pct) erhält */
+der Abteilungsnummer eines Mitarbeiters Ã¼bereinstimmt, der eine Provision 
+(commission_pct) erhÃ¤lt */
 
 
 
            
 /* Aufgabe 2 - Listen Sie Nachname, Einstellungsdatum und Gehalt eines jeden 
 Mitarbeiter an, der das  gleiche Gehalt und die gleiche Provision wie der 
-Mitarbeiter 'Kochhar' erhält. Kochhar soll nicht im Ergebnis enthalten sein */
+Mitarbeiter 'Kochhar' erhÃ¤lt. Kochhar soll nicht im Ergebnis enthalten sein */
 
 
         
         
-/* Aufgabe 3 - Zeigen Sie die Mitarbeiter an, deren Gehalt höher als das Gehalt 
+/* Aufgabe 3 - Zeigen Sie die Mitarbeiter an, deren Gehalt hÃ¶her als das Gehalt 
 aller Sales Manager ist (job_id = 'SA_MAN'). Sortieren Sie die Ergebnisse
-vom höchsten zum niedrigsten Gehalt. */
+vom hÃ¶chsten zum niedrigsten Gehalt. */
 
 
 
 
 /* Aufgabe 4 - Suchen Sie alle Angestellten und zeigen deren Namen an, die 
-keine Vorgesetzten sind. Verwenden Sie dabei möglichst den EXISTS-Operator. 
-Können Sie die Aufgabe auch mit dem IN-Operator lösen? */
+keine Vorgesetzten sind. Verwenden Sie dabei mÃ¶glichst den EXISTS-Operator. 
+KÃ¶nnen Sie die Aufgabe auch mit dem IN-Operator lÃ¶sen? */
 
 
                           
@@ -44,8 +44,8 @@ Verwenden Sie skalare Unterabfragen */
                   
                   
 /* Aufgabe 7 Erstellen Sie eine Abfrage, um die Jobkennungen der Jobs 
-anzuzeigen, deren Maximalgehalt 50% des Maximalgehalts des Jobkennung mit dem 
-höchsten Maximalwert im Unternehmen übersteigt.
+anzuzeigen, deren Maximalgehalt 50% des Maximalgehalts der Jobkennung mit dem 
+hÃ¶chsten Maximalwert im Unternehmen Ã¼bersteigt.
 Verwenden Sie die WITH-Klausel */
 
 
@@ -53,5 +53,5 @@ Verwenden Sie die WITH-Klausel */
 
 /* Aufgabe 8 Erstellen Sie eine Abfrage, um die Namen der Abteilungen 
 anzuzeigen, deren Gesamtlohnkosten ein Achtel (1/8) der Gesamtlohnkosten des 
-Unternehmens übersteigen. Verwenden Sie die WITH-Klausel. */
+Unternehmens Ã¼bersteigen. Verwenden Sie die WITH-Klausel. */
 
