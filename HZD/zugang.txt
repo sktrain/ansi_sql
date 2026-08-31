@@ -1,0 +1,39 @@
+## Zugang
+
+**URL:** https://pgadmin.biederbeck.de
+
+## Accounts
+
+| Rolle | pgAdmin-Login | PostgreSQL-Benutzer | Passwort | 
+
+|----------|-----------------------------|---------------------|----------------------|
+
+| Dozent | dozent@biederbeck.de | dozent | weiss-adler-58 |
+
+| Teilnehmer 1 | tln1@biederbeck.de | tln1 | blau-otter-47 | 
+
+| Teilnehmer 2 | tln2@biederbeck.de | tln2 | blau-eule-54 | 
+
+| Teilnehmer 3 | tln3@biederbeck.de | tln3 | schwarz-otter-51 | 
+
+| Teilnehmer 4 | tln4@biederbeck.de | tln4 | orange-dachs-86 | 
+
+| Teilnehmer 5 | tln5@biederbeck.de | tln5 | blau-robbe-45 | 
+
+| Teilnehmer 6 | tln6@biederbeck.de | tln6 | schwarz-krake-14 | 
+
+| Teilnehmer 7 | tln7@biederbeck.de | tln7 | schwarz-tapir-24 | 
+
+| Teilnehmer 8 | tln8@biederbeck.de | tln8 | gold-krake-94 | 
+
+| Teilnehmer 9 | tln9@biederbeck.de | tln9 | tuerkis-luchs-99 | 
+
+| Teilnehmer 10 | tln10@biederbeck.de | tln10 | rot-luchs-72 | 
+
+| Teilnehmer 11 | tln11@biederbeck.de | tln11 | weiss-biber-73 | 
+
+| Teilnehmer 12 | tln12@biederbeck.de | tln12 | schwarz-fuchs-33 |
+
+ 
+
+Das mit den Mail Adressen ist unglücklich, aber PgAdmin’s internes Auth erwartet ein @ im Benutzernamen.
